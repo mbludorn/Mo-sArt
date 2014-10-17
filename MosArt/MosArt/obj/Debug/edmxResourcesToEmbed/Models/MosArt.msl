@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MosArtModelStoreContainer" CdmEntityContainer="MosArtEntities">
+    <EntitySetMapping Name="Artists">
+      <EntityTypeMapping TypeName="MosArtModel.Artist">
+        <MappingFragment StoreEntitySet="Artists">
+          <ScalarProperty Name="ArtistID" ColumnName="ArtistID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="ImageURL" ColumnName="ImageURL" />
+          <ScalarProperty Name="ArtistStyle" ColumnName="ArtistStyle" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="AllowContent" ColumnName="AllowContent" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pieces">
+      <EntityTypeMapping TypeName="MosArtModel.Piece">
+        <MappingFragment StoreEntitySet="Pieces">
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Medium" ColumnName="Medium" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="ArtistID" ColumnName="ArtistID" />
+          <ScalarProperty Name="PieceID" ColumnName="PieceID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+     <header class="header">
+      <img src="../../Content/MosArtHeader.jpg" alt="" />
+        </header>
+    <nav style ="text-align:center;">
+        <a href="@Url.Action("Index", "Home")">
+            Home
+        </a>
+        &nbsp||&nbsp
+        <a href="@Url.Action("Index", "WhatIs")">
+            Mo'sArt
+        </a>
+        &nbsp||&nbsp
+        <a href="@Url.Action("Index", "YourArt")">
+            Art
+        </a>
+        &nbsp||&nbsp
+        <a href="@Url.Action("Index", "Contact")">
+            Contact 
+        </a>
+        </nav>
+        &nbsp
+        &nbsp
+        &nbsp
+        &nbsp
+        &nbsp
+
+    
+    
+    <section id="container" class="content-wrapper main-content clear-fix">
+    @RenderBody()
+     </section>
+
+
+    <footer class ="footer">
+        <div class ="footerright">
+            Copyright (c) 2014 Morgan Bludorn 
+        </div>
+        <div class ="footleft">
+        <a href="@Url.Action("Index", "Home")">
+            Home
+        </a>
+        &nbsp||&nbsp
+        <a href="@Url.Action("Index", "WhatIs")">
+            Mo'sArt
+        </a>
+        &nbsp||&nbsp
+        <a href="@Url.Action("Index", "YourArt")">
+            Art
+        </a>
+        &nbsp||&nbsp
+        <a href="@Url.Action("Index", "Contact")">
+            Contact
+        </a>
+        </div>
+    </footer>
+
+
+    
+
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

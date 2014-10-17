@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MosArtModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="MosArtEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="Artists" EntityType="MosArtModel.Artist" />
+    <EntitySet Name="Pieces" EntityType="MosArtModel.Piece" />
+    <AssociationSet Name="FK_Pieces_Artists" Association="MosArtModel.FK_Pieces_Artists">
+      <End Role="Artist" EntitySet="Artists" />
+      <End Role="Piece" EntitySet="Pieces" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Artist">
+    <Key>
+      <PropertyRef Name="ArtistID" />
+    </Key>
+    <Property Name="ArtistID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Email" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="ImageURL" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="ArtistStyle" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="Username" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="AllowContent" Type="Boolean" />
+    <NavigationProperty Name="Pieces" Relationship="MosArtModel.FK_Pieces_Artists" FromRole="Artist" ToRole="Piece" />
+  </EntityType>
+  <EntityType Name="Piece">
+    <Key>
+      <PropertyRef Name="PieceID" />
+    </Key>
+    <Property Type="Int32" Name="PieceID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="ArtistID" Nullable="false" />
+    <Property Type="String" Name="Title" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Medium" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Description" MaxLength="400" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Artist" Relationship="MosArtModel.FK_Pieces_Artists" FromRole="Piece" ToRole="Artist" />
+  </EntityType>
+  <Association Name="FK_Pieces_Artists">
+    <End Type="MosArtModel.Artist" Role="Artist" Multiplicity="1" />
+    <End Type="MosArtModel.Piece" Role="Piece" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Artist">
+        <PropertyRef Name="ArtistID" />
+      </Principal>
+      <Dependent Role="Piece">
+        <PropertyRef Name="ArtistID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MosArtModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="MosArtModelStoreContainer">
+    <EntitySet Name="Artists" EntityType="MosArtModel.Store.Artists" store:Type="Tables" Schema="spMorgan" />
+    <EntitySet Name="Pieces" EntityType="MosArtModel.Store.Pieces" store:Type="Tables" Schema="spMorgan" />
+    <AssociationSet Name="FK_Pieces_Artists" Association="MosArtModel.Store.FK_Pieces_Artists">
+      <End Role="Artists" EntitySet="Artists" />
+      <End Role="Pieces" EntitySet="Pieces" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Artists">
+    <Key>
+      <PropertyRef Name="ArtistID" />
+    </Key>
+    <Property Name="ArtistID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" MaxLength="100" />
+    <Property Name="ImageURL" Type="nvarchar" MaxLength="100" />
+    <Property Name="ArtistStyle" Type="nvarchar" MaxLength="200" />
+    <Property Name="Username" Type="nvarchar" MaxLength="200" />
+    <Property Name="AllowContent" Type="bit" />
+  </EntityType>
+  <EntityType Name="Pieces">
+    <Key>
+      <PropertyRef Name="PieceID" />
+    </Key>
+    <Property Name="PieceID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ArtistID" Type="int" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="200" />
+    <Property Name="Medium" Type="nvarchar" MaxLength="200" />
+    <Property Name="Description" Type="nvarchar" MaxLength="400" />
+  </EntityType>
+  <Association Name="FK_Pieces_Artists">
+    <End Role="Artists" Type="MosArtModel.Store.Artists" Multiplicity="1" />
+    <End Role="Pieces" Type="MosArtModel.Store.Pieces" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Artists">
+        <PropertyRef Name="ArtistID" />
+      </Principal>
+      <Dependent Role="Pieces">
+        <PropertyRef Name="ArtistID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
